@@ -13,8 +13,8 @@ const Stack = createStackNavigator();
 
 export default function App() {
     const [fontsLoaded] = useFonts({
-        Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
-        'Roboto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+        Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+        'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
     });
     
     if (!fontsLoaded) {

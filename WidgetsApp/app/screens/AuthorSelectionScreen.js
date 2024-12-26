@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+    View,
+    Text,
+    FlatList,
+    TouchableOpacity,
+    Button,
+    StyleSheet,
+} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import quotes from '../data/quotes.json';
 import { colors } from '../styles/theme';
@@ -19,7 +26,7 @@ export default function AuthorSelectionScreen() {
         const updatedAuthors = selectedAuthors.includes(author)
             ? selectedAuthors.filter((a) => a !== author)
             : [...selectedAuthors, author];
-        
+
         setSelectedAuthors(updatedAuthors);
         await AsyncStorage.setItem('selectedAuthors', JSON.stringify(updatedAuthors));
     };
@@ -27,6 +34,12 @@ export default function AuthorSelectionScreen() {
     const clearSelection = async () => {
         setSelectedAuthors([]);
         await AsyncStorage.removeItem('selectedAuthors');
+    };
+
+    const authorDescriptions = {
+        'Albert Einstein': 'A genius physicist known for his theory of relativity.',
+        'Maya Angelou': 'A poet, activist, and author who inspired millions.',
+        'Mark Twain': 'A master storyteller and humorist of American literature.',
     };
 
     return (
@@ -45,10 +58,13 @@ export default function AuthorSelectionScreen() {
                         onPress={() => toggleAuthorSelection(item.author)}
                     >
                         <Text style={styles.buttonText}>{item.author}</Text>
+                        <Text style={styles.description}>
+                            {authorDescriptions[item.author] || 'A legendary figure.'}
+                        </Text>
                     </TouchableOpacity>
                 )}
             />
-            <Button title="Clear Selection" onPress={clearSelection} />
+            <Button title="Clear Selection" onPress={clearSelection} color={colors.accent} />
         </View>
     );
 }
@@ -72,19 +88,27 @@ const styles = StyleSheet.create({
     },
     button: {
         marginVertical: 8,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderRadius: 25,
+        padding: 15,
+        borderRadius: 15,
         backgroundColor: colors.buttonBackground,
         borderWidth: 1,
         borderColor: colors.secondary,
+        width: '90%',
+        alignItems: 'center',
     },
     buttonSelected: {
         backgroundColor: colors.buttonSelected,
     },
     buttonText: {
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: 'bold',
         color: colors.text,
+    },
+    description: {
+        fontSize: 14,
+        color: colors.secondary,
+        fontStyle: 'italic',
         textAlign: 'center',
+        marginTop: 5,
     },
 });
