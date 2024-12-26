@@ -1,0 +1,23 @@
+[
+    {
+        "author": "Albert Einstein",
+        "quotes": [
+            "Life is like riding a bicycle. To keep your balance, you must keep moving.",
+            "Imagination is more important than knowledge."
+        ]
+    },
+    {
+        "author": "Maya Angelou",
+        "quotes": [
+            "You will face many defeats in life, but never let yourself be defeated.",
+            "Try to be a rainbow in someone else's cloud."
+        ]
+    },
+    {
+        "author": "Mark Twain",
+        "quotes": [
+            "The secret of getting ahead is getting started.",
+            "The best way to cheer yourself up is to try to cheer somebody else up."
+        ]
+    }
+]
