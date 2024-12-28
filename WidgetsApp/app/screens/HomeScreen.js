@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import poets from '../data/poets.json'; // Update JSON import
+import { Ionicons } from '@expo/vector-icons'; // Import icon library
+import verses from '../data/poets.json'; // Update JSON import
 import { colors } from '../styles/theme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
@@ -32,7 +33,7 @@ export default function HomeScreen({ navigation }) {
         }
 
         const poet = selectedPoets[Math.floor(Math.random() * selectedPoets.length)];
-        const poetPoems = poets.find((p) => p.poet === poet)?.poems || [];
+        const poetPoems = verses.find((p) => p.name === poet)?.verses || [];
         const poem = poetPoems[Math.floor(Math.random() * poetPoems.length)] || '';
         setRandomPoem(poem + '\n\n- ' + poet);
     };
@@ -44,17 +45,19 @@ export default function HomeScreen({ navigation }) {
         >
             <View style={styles.container}>
                 <Text style={styles.poem}>{randomPoem}</Text>
+                <TouchableOpacity
+                    style={styles.reloadButton}
+                    onPress={generateRandomPoem}
+                >
+                    <Ionicons name="reload" size={24} color={colors.accent} />
+                </TouchableOpacity>
                 <View style={styles.buttonContainer}>
-                    <Button
-                        title="Select Poets"
+                    <TouchableOpacity
+                        style={styles.navButton}
                         onPress={() => navigation.navigate('Poet Selection')}
-                        color={colors.accent}
-                    />
-                    <Button
-                        title="Generate New Poem"
-                        onPress={generateRandomPoem}
-                        color={colors.secondary}
-                    />
+                    >
+                        <Text style={styles.navButtonText}>Select Poets</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </LinearGradient>
@@ -75,13 +78,28 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         color: colors.text,
-        marginBottom: 30,
+        marginBottom: 10, // Adjust margin for spacing with the reload button
         fontStyle: 'italic',
+    },
+    reloadButton: {
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         width: '100%',
         marginTop: 20,
+    },
+    navButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        backgroundColor: colors.accent,
+    },
+    navButtonText: {
+        fontSize: 16,
+        color: colors.textOnAccent,
     },
 });
