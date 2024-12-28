@@ -40,7 +40,12 @@ export default function AuthorSelectionScreen() {
         'Albert Einstein': 'A genius physicist known for his theory of relativity.',
         'Maya Angelou': 'A poet, activist, and author who inspired millions.',
         'Mark Twain': 'A master storyteller and humorist of American literature.',
+        'Oscar Wilde': 'An Irish poet and playwright known for his wit and aestheticism.',
     };
+
+    const getDescriptionStyle = (author) => ({
+        color: selectedAuthors.includes(author) ? colors.accent : colors.secondary,
+    });
 
     return (
         <View style={styles.container}>
@@ -58,7 +63,7 @@ export default function AuthorSelectionScreen() {
                         onPress={() => toggleAuthorSelection(item.author)}
                     >
                         <Text style={styles.buttonText}>{item.author}</Text>
-                        <Text style={styles.description}>
+                        <Text style={[styles.description, getDescriptionStyle(item.author)]}>
                             {authorDescriptions[item.author] || 'A legendary figure.'}
                         </Text>
                     </TouchableOpacity>
@@ -106,7 +111,6 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 14,
-        color: colors.secondary,
         fontStyle: 'italic',
         textAlign: 'center',
         marginTop: 5,

@@ -1,1 +1,1 @@
-# Widget-App
+# Poetry Widgets App

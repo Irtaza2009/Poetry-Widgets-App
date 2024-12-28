@@ -1,59 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import quotes from '../data/quotes.json';
+import poets from '../data/poets.json'; // Update JSON import
 import { colors } from '../styles/theme';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from '@react-navigation/native';
 
 export default function HomeScreen({ navigation }) {
-    const [selectedAuthors, setSelectedAuthors] = useState([]);
-    const [randomQuote, setRandomQuote] = useState('');
+    const [selectedPoets, setSelectedPoets] = useState([]);
+    const [randomPoem, setRandomPoem] = useState('');
 
-    // Load selected authors every time the screen gains focus
     useFocusEffect(
         React.useCallback(() => {
-            const loadSelectedAuthors = async () => {
-                const storedAuthors = await AsyncStorage.getItem('selectedAuthors');
-                if (storedAuthors) setSelectedAuthors(JSON.parse(storedAuthors));
-                else setSelectedAuthors([]);
+            const loadSelectedPoets = async () => {
+                const storedPoets = await AsyncStorage.getItem('selectedPoets');
+                if (storedPoets) setSelectedPoets(JSON.parse(storedPoets));
+                else setSelectedPoets([]);
             };
-            loadSelectedAuthors();
+            loadSelectedPoets();
         }, [])
     );
 
     useEffect(() => {
-        generateRandomQuote();
-    }, [selectedAuthors]);
+        generateRandomPoem();
+    }, [selectedPoets]);
 
-    const generateRandomQuote = () => {
-        if (selectedAuthors.length === 0) {
-            setRandomQuote('No authors selected. Please choose from the list.');
+    const generateRandomPoem = () => {
+        if (selectedPoets.length === 0) {
+            setRandomPoem('No poets selected. Please choose from the list.');
             return;
         }
 
-        const author = selectedAuthors[Math.floor(Math.random() * selectedAuthors.length)];
-        const authorQuotes = quotes.find((q) => q.author === author)?.quotes || [];
-        const quote = authorQuotes[Math.floor(Math.random() * authorQuotes.length)] || '';
-        setRandomQuote(quote + '\n\n- ' + author);
+        const poet = selectedPoets[Math.floor(Math.random() * selectedPoets.length)];
+        const poetPoems = poets.find((p) => p.poet === poet)?.poems || [];
+        const poem = poetPoems[Math.floor(Math.random() * poetPoems.length)] || '';
+        setRandomPoem(poem + '\n\n- ' + poet);
     };
 
     return (
         <LinearGradient
             colors={['#A8DADC', '#F8F4F9']}
-            style={{ flex: 1 }}
+            style={styles.gradient}
         >
             <View style={styles.container}>
-                <Text style={styles.quote}>{randomQuote}</Text>
+                <Text style={styles.poem}>{randomPoem}</Text>
                 <View style={styles.buttonContainer}>
                     <Button
-                        title="Select Authors"
-                        onPress={() => navigation.navigate('Author Selection')}
+                        title="Select Poets"
+                        onPress={() => navigation.navigate('Poet Selection')}
                         color={colors.accent}
                     />
                     <Button
-                        title="Generate New Quote"
-                        onPress={generateRandomQuote}
+                        title="Generate New Poem"
+                        onPress={generateRandomPoem}
                         color={colors.secondary}
                     />
                 </View>
@@ -63,14 +62,16 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    gradient: {
+        flex: 1,
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: colors.background,
     },
-    quote: {
+    poem: {
         fontSize: 20,
         textAlign: 'center',
         color: colors.text,
