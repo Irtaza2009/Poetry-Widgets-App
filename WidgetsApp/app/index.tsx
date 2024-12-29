@@ -5,6 +5,7 @@ import HomeScreen from './screens/HomeScreen';
 import AuthorSelectionScreen from './screens/AuthorSelectionScreen';
 import PoetSelectionScreen from './screens/PoetSelectionScreen';
 import VerseDetailsScreen from './screens/VerseDetailsScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
@@ -27,6 +28,7 @@ export default function App() {
                 <Stack.Screen name="Author Selection" component={AuthorSelectionScreen} />
                 <Stack.Screen name="Poet Selection" component={PoetSelectionScreen} />
                 <Stack.Screen name="Verse Details" component={VerseDetailsScreen} />
+                <Stack.Screen name="Settings" component={SettingsScreen} />
             </Stack.Navigator>
 
     );

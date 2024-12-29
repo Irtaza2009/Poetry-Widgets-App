@@ -1,17 +1,61 @@
 [
     {
         "name": "Rumi",
-        "verses": [
-            "The wound is the place where the light enters you.",
-            "Don’t grieve. Anything you lose comes round in another form."
-        ]
+        "verses": {
+            "English": [
+                "The wound is the place where the light enters you.",
+                "Don’t grieve. Anything you lose comes round in another form."
+            ]
+        }
     },
     {
         "name": "Emily Dickinson",
-        "verses": [
-            "Hope is the thing with feathers that perches in the soul.",
-            "Forever is composed of nows."
-            
-        ]
+        "verses": {
+            "English": [
+                "Hope is the thing with feathers that perches in the soul.",
+                "Forever is composed of nows."
+            ]
+        }
+    },
+    {
+        "name": "Allama Iqbal",
+        "verses": {
+            "Urdu": [
+                "Khudi ko kar buland itna ke har taqdeer se pehle,, Khuda bande se khud pooche bata teri raza kya hai.",
+                "خودی کو کر بلند کرنا کے ہر تقدیر سے پہلے،، خدا بندے سے خود پوچھے بتا تیری رضا کیا ہے"
+            ],
+            "English": [
+                "Raise yourself to such heights that before every destiny,, God himself asks you, what is your wish?"
+            ]
+        }
+    },
+    {
+        "name": "William Wordsworth",
+        "verses": {
+            "English": [
+                "The best portion of a good man's life,, His little, nameless, unremembered acts of kindness and love.",
+                "Fill your paper with the breathings of your heart."
+            ]
+        }
+    },
+    {
+        "name": "Ghalib",
+        "verses": {
+            "Urdu": [
+                "Dil-e-nadaan tujhe hua kya hai,, Aakhir is dard ki dawa kya hai."
+            ],
+            "English": [
+                "O naive heart, what has happened to you,, What is the remedy for this pain, after all?"
+            ]
+        }
+    },
+    {
+        "name": "Khalil Gibran",
+        "verses": {
+            "English": [
+                "Out of suffering have emerged the strongest souls,, The most massive characters are seared with scars.",
+                "Your pain is the breaking of the shell that encloses your understanding."
+            ]
+        }
     }
 ]
