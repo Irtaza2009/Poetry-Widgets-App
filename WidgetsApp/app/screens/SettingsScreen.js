@@ -30,10 +30,12 @@ export default function SettingsScreen({navigation}) {
         };
         loadSettings();
     }, []);
+
+    const theme = darkMode ? colors.dark : colors.light;
     
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Settings</Text>
+        <View style={[styles.container, {backgroundColor: theme.background}]}>
+            <Text style={[styles.title, {color: theme.text}]}>Settings</Text>
 
             {/* Dark Mode */}
             <View style={styles.settingItem}>
@@ -41,24 +43,24 @@ export default function SettingsScreen({navigation}) {
                 <Switch
                     value={darkMode}
                     onValueChange={toggleDarkMode}
-                    trackColor={{false: colors.lightGray, true: colors.accent}}
-                    thumbColor={darkMode ? colors.accent : colors.background}
+                    trackColor={{false: theme.lightGray, true: theme.accent}}
+                    thumbColor={darkMode ? theme.accent : theme.background}
                 />
             </View>
 
             {/* Notifications */}
             <View style={styles.settingItem}>
-                <Text style={styles.settingText}>Enable Notifications</Text>
+                <Text style={[styles.settingText, {color: theme.text}]}>Enable Notifications</Text>
                 <Switch
                     value={notificationsEnabled}
                     onValueChange={toggleNotifications}
-                    trackColor={{false: colors.lightGray, true: colors.accent}}
-                    thumbColor={notificationsEnabled ? colors.accent : colors.background}
+                    trackColor={{false: theme.lightGray, true: theme.accent}}
+                    thumbColor={notificationsEnabled ? theme.accent : theme.background}
                 />
             </View>
 
             <TouchableOpacity
-                style={styles.backButton}
+                style={[styles.backButton, {backgroundColor: theme.accent}, {color: theme.textOnAccent}]}
                 onPress={() => navigation.goBack()}
             >
                 <Text style={styles.backButtonText}>Back</Text>
@@ -72,12 +74,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: colors.background,
     },
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        color: colors.text,
         marginBottom: 20,
     },
     settingItem: {
@@ -88,17 +88,14 @@ const styles = StyleSheet.create({
     },
     settingText: {
         fontSize: 18,
-        color: colors.text,
     },
     backButton: {
         marginTop: 30,
         padding: 15,
-        backgroundColor: colors.accent,
         borderRadius: 5,
         alignItems: "center",
     },
     backButtonText: {
         fontSize: 16,
-        color: colors.textOnAccent,
     },
 });
