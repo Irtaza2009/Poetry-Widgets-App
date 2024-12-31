@@ -21,11 +21,13 @@
         "name": "Allama Iqbal",
         "verses": {
             "Urdu": [
-                "Khudi ko kar buland itna ke har taqdeer se pehle,, Khuda bande se khud pooche bata teri raza kya hai.",
                 "خودی کو کر بلند کرنا کے ہر تقدیر سے پہلے،، خدا بندے سے خود پوچھے بتا تیری رضا کیا ہے"
             ],
             "English": [
                 "Raise yourself to such heights that before every destiny,, God himself asks you, what is your wish?"
+            ],
+            "Roman Urdu": [
+                "Khudi ko kar buland itna ke har taqdeer se pehle,, Khuda bande se khud pooche bata teri raza kya hai."
             ]
         }
     },

@@ -26,6 +26,7 @@ export default function HomeScreen({ navigation }) {
   );
 
   useEffect(() => {
+    document.title = "Poetry App";
     generateRandomPoem();
   }, [selectedPoets, language]);
 
@@ -50,23 +51,38 @@ export default function HomeScreen({ navigation }) {
   return (
     <LinearGradient colors={theme.gradient} style={styles.gradient}>
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-        <View style={styles.dropdownContainer}>
-          <Picker
-            selectedValue={language}
-            onValueChange={(itemValue) => setLanguage(itemValue)}
-            style={[styles.picker, { color: theme.text }]}
+      <TouchableOpacity
+            style={[
+              styles.settingsButton,
+              { backgroundColor: theme.secondaryAccent },
+            ]}
+            onPress={() => navigation.navigate("Settings")}
           >
-            <Picker.Item label="English" value="English" />
-            <Picker.Item label="Urdu" value="Urdu" />
-          </Picker>
-        </View>
+            <Ionicons name="settings" size={20} color={theme.textOnAccent} />
+           
+          </TouchableOpacity>
         <Text style={[styles.poem, { color: theme.text }]}>{randomPoem}</Text>
-        <TouchableOpacity
-          style={styles.reloadButton}
-          onPress={generateRandomPoem}
-        >
-          <Ionicons name="reload" size={24} color={theme.accent} />
-        </TouchableOpacity>
+        <View>
+          <View style={styles.dropdownWrapper}>
+            <TouchableOpacity
+              style={styles.reloadButton}
+              onPress={generateRandomPoem}
+            >
+              <Ionicons name="reload" size={24} color={theme.accent} />
+            </TouchableOpacity>
+            <View style={styles.dropdownContainer}>
+              <Picker
+                selectedValue={language}
+                onValueChange={(itemValue) => setLanguage(itemValue)}
+                style={[styles.picker, { color: theme.text }]}
+              >
+                <Picker.Item label="English" value="English" />
+                <Picker.Item label="Urdu" value="Urdu" />
+                <Picker.Item label="Roman Urdu/Hindi" value="Roman Urdu"/>
+              </Picker>
+            </View>
+          </View>
+        </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             style={[styles.navButton, { backgroundColor: theme.accent }]}
@@ -76,18 +92,7 @@ export default function HomeScreen({ navigation }) {
               Select Poets
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.navButton,
-              { backgroundColor: theme.secondaryAccent },
-            ]}
-            onPress={() => navigation.navigate("Settings")}
-          >
-            <Ionicons name="settings" size={20} color={theme.textOnAccent} />
-            <Text style={[styles.navButtonText, { color: theme.textOnAccent }]}>
-              Settings
-            </Text>
-          </TouchableOpacity>
+         
         </View>
       </View>
     </LinearGradient>
@@ -102,14 +107,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
-  dropdownContainer: {
-    position: "absolute",
-    top: 10,
-    right: 10,
-    borderRadius: 5,
-    overflow: "hidden",
+  dropdownWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+    marginLeft: 10,
   },
-  picker: { height: 40, width: 150 },
+  dropdownLabel: {
+    fontSize: 14,
+    marginRight: 5,
+    fontWeight: "bold",
+  },
+  dropdownContainer: {
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    backgroundColor: "#fff",
+    //overflow: "hidden",
+    marginLeft: 10,
+  },
+  picker: {
+    height: 30,
+    width: 100,
+    paddingHorizontal: 10,
+    borderWidth: 0,
+    color: "#000",
+  },
   poem: {
     fontSize: 20,
     textAlign: "center",
@@ -117,9 +140,11 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   reloadButton: {
-    marginTop: 10,
+    marginTop: 0,
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
+    marginRight: 10,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -136,4 +161,19 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   navButtonText: { fontSize: 16 },
+  settingsButton: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: "#ccc",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+  }
 });
+
+

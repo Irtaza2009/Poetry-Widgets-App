@@ -42,7 +42,7 @@ export default function PoetSelectionScreen() {
   };
 
   const poetDescriptions = {
-    Rumi: "A Persian poet known for his spiritual wisdom.",
+    "Rumi": "A Persian poet known for his spiritual wisdom.",
     "Emily Dickinson": "An American poet with introspective works.",
     "William Wordsworth": "A poet who captured the beauty of nature.",
     "Maya Angelou": "An influential poet and activist.",
