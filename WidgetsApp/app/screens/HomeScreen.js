@@ -92,6 +92,14 @@ export default function HomeScreen({ navigation }) {
               Select Poets
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.navButton, { backgroundColor: theme.accent }]}
+            onPress={() => navigation.navigate("Share", { verse: randomPoem })}
+          >
+            <Text style={[styles.navButtonText, { color: theme.textOnAccent }]}>
+              Share
+            </Text>
+          </TouchableOpacity>
          
         </View>
       </View>
@@ -123,7 +131,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     backgroundColor: "#fff",
-    //overflow: "hidden",
+    overflow: "hidden",
     marginLeft: 10,
   },
   picker: {

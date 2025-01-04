@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingBottom: 20,
+    overflow: "scroll",
   },
   title: {
     fontSize: 24,
@@ -108,6 +110,8 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: "center",
     alignItems: "center",
+    flexGrow: 1,
+    paddingBottom: 20,
   },
   button: {
     marginVertical: 8,

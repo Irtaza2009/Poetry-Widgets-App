@@ -43,7 +43,10 @@
     {
         "name": "Mirza Ghalib",
         "verses": {
-            "Urdu": [
+            "Urdu":[
+                "دلِ نادان تجھے ہوا کیا ہے،، آخر اس درد کی دوا کیا ہے"
+            ],
+            "Roman Urdu": [
                 "Dil-e-nadaan tujhe hua kya hai,, Aakhir is dard ki dawa kya hai."
             ],
             "English": [
