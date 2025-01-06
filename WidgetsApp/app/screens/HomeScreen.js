@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Picker } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Ionicons } from "@expo/vector-icons";
 import verses from "../data/poets.json";
@@ -26,8 +27,9 @@ export default function HomeScreen({ navigation }) {
   );
 
   useEffect(() => {
-    document.title = "Poetry App";
+    //document.title = "Poetry App";
     generateRandomPoem();
+    console.log("Navigation prop:", navigation);
   }, [selectedPoets, language]);
 
   const generateRandomPoem = () => {
@@ -51,16 +53,15 @@ export default function HomeScreen({ navigation }) {
   return (
     <LinearGradient colors={theme.gradient} style={styles.gradient}>
       <View style={[styles.container, { backgroundColor: theme.background }]}>
-      <TouchableOpacity
-            style={[
-              styles.settingsButton,
-              { backgroundColor: theme.secondaryAccent },
-            ]}
-            onPress={() => navigation.navigate("Settings")}
-          >
-            <Ionicons name="settings" size={20} color={theme.textOnAccent} />
-           
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.settingsButton,
+            { backgroundColor: theme.secondaryAccent },
+          ]}
+          onPress={() => navigation.navigate("Settings")}
+        >
+          <Ionicons name="settings" size={20} color={theme.textOnAccent} />
+        </TouchableOpacity>
         <Text style={[styles.poem, { color: theme.text }]}>{randomPoem}</Text>
         <View>
           <View style={styles.dropdownWrapper}>
@@ -78,7 +79,7 @@ export default function HomeScreen({ navigation }) {
               >
                 <Picker.Item label="English" value="English" />
                 <Picker.Item label="Urdu" value="Urdu" />
-                <Picker.Item label="Roman Urdu/Hindi" value="Roman Urdu"/>
+                <Picker.Item label="Roman Urdu/Hindi" value="Roman Urdu" />
               </Picker>
             </View>
           </View>
@@ -100,7 +101,6 @@ export default function HomeScreen({ navigation }) {
               Share
             </Text>
           </TouchableOpacity>
-         
         </View>
       </View>
     </LinearGradient>
@@ -181,7 +181,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-  }
+  },
 });
-
-

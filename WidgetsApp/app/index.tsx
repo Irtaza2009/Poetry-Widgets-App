@@ -1,38 +1,41 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-import HomeScreen from './screens/HomeScreen';
-import AuthorSelectionScreen from './screens/AuthorSelectionScreen';
-import PoetSelectionScreen from './screens/PoetSelectionScreen';
-import VerseDetailsScreen from './screens/VerseDetailsScreen';
-import SettingsScreen from './screens/SettingsScreen';
-import ShareScreen from './screens/ShareScreen';
+import HomeScreen from "./screens/HomeScreen";
+import AuthorSelectionScreen from "./screens/AuthorSelectionScreen";
+import PoetSelectionScreen from "./screens/PoetSelectionScreen";
+import VerseDetailsScreen from "./screens/VerseDetailsScreen";
+import SettingsScreen from "./screens/SettingsScreen";
+import ShareScreen from "./screens/ShareScreen";
 
-
-import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-    const [fontsLoaded] = useFonts({
-        Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
-        'Roboto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
-    });
-    
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
-    return (
+  const [fontsLoaded] = useFonts({
+    Roboto: require("../assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
+  });
 
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="Author Selection" component={AuthorSelectionScreen} />
-                <Stack.Screen name="Poet Selection" component={PoetSelectionScreen} />
-                <Stack.Screen name="Verse Details" component={VerseDetailsScreen} />
-                <Stack.Screen name="Settings" component={SettingsScreen} />
-                <Stack.Screen name="Share" component={ShareScreen} />
-            </Stack.Navigator>
-
-    );
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Author Selection"
+          component={AuthorSelectionScreen}
+        />
+        <Stack.Screen name="Poet Selection" component={PoetSelectionScreen} />
+        <Stack.Screen name="Verse Details" component={VerseDetailsScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Share" component={ShareScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
